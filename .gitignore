@@ -4,3 +4,9 @@ venv/
 # Ignore Python bytecode files
 __pycache__/
 *.pyc
+
+# Ignore IDE settings (for JetBrains)
+.idea/
+
+# Ignore SQLite database
+db.sqlite3

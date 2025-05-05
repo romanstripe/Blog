@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post
-from .forms import PostForm
+from .forms import PostForm, SignupForm
 
 def post_list(request): #array list of posts by time
     posts = Post.objects.all().order_by('-created_at')
@@ -40,3 +40,13 @@ def post_new(request):
     else:
         form= PostForm()
         return render(request, 'posts/post_form.html', {'form':form})
+
+def signup(request):
+    if request.method == "POST":
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+    else:
+        form = SignupForm()
+    return render(request, 'registration/signup.html', {'form':form})
